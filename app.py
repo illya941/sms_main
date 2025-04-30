@@ -13,17 +13,20 @@ def receive_sms():
     #message = request.form.get('message')
     #print(f"SMS от {sender}: {message}")
     
-    print("=== RAW DATA ===")
-    print(request.data)
-    print("=== FORM ===")
-    print(request.form)
-    print("=== JSON ===")
-    print(request.get_json(silent=True))
+    #print("=== RAW DATA ===")
+    #print(request.data)
+    #print("=== FORM ===")
+    #print(request.form)
+    #print("=== JSON ===")
+    #print(request.get_json(silent=True))
+    
+    data = request.get_json()
+    print(data)
     
     print("📩 Запрос получен!")
     for key in request.form:
         print(f"{key}: {request.form.get(key)}")
-        
+        data
     return "OK", 200
 
 if __name__ == '__main__':
