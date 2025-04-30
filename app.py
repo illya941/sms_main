@@ -9,9 +9,16 @@ def index():
 
 @app.route('/sms/device', methods=['POST'])
 def receive_sms():
-    sender = request.form.get('from')
-    message = request.form.get('message')
-    print(f"SMS от {sender}: {message}")
+    #sender = request.form.get('from')
+    #message = request.form.get('message')
+    #print(f"SMS от {sender}: {message}")
+    
+    print("=== RAW DATA ===")
+    print(request.data)
+    print("=== FORM ===")
+    print(request.form)
+    print("=== JSON ===")
+    print(request.get_json(silent=True))
     return "OK", 200
 
 if __name__ == '__main__':
