@@ -20,13 +20,18 @@ def receive_sms():
     #print("=== JSON ===")
     #print(request.get_json(silent=True))
     
-    data = request.get_json()
-    print(data)
+    #data = request.get_json()
+    #print(data)
     
-    print("📩 Запрос получен!")
-    for key in request.form:
-        print(f"{key}: {request.form.get(key)}")
-        data
+    try:
+        data = request.get_json()
+        print("JSON:", data)
+        message = data.get('message')
+    except:
+        message = request.form.get('message')
+    
+    print("MESSAGE:", message)
+    
     return "OK", 200
 
 if __name__ == '__main__':
