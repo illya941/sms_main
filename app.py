@@ -7,7 +7,7 @@ app = Flask(__name__)
 def index():
     return "Flask-сервер запущен и слушает PORT"
 
-@app.route('/sms', methods=['POST'])
+@app.route('/sms/device', methods=['POST'])
 def receive_sms():
     sender = request.form.get('from')
     message = request.form.get('message')
