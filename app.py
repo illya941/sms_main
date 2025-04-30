@@ -1,20 +1,20 @@
+import os
 from flask import Flask, request
 
 app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return "Flask-сервер запущен и слушает PORT"
 
 @app.route('/sms', methods=['POST'])
 def receive_sms():
     sender = request.form.get('from')
     message = request.form.get('message')
-    sent_time = request.form.get('sent')
-
-    print(f"[{sent_time}] SMS from {sender}: {message}")
+    print(f"SMS от {sender}: {message}")
     return "OK", 200
 
-@app.route('/')
-def index():
-    return "SMS сервер работает!"
-
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get("PORT", 5000))  # ← Ключевая строка
+    app.run(host='0.0.0.0', port=port)
 
